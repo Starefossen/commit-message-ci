@@ -1,0 +1,4 @@
+*.log
+.env.*
+static/css
+static/js/semantic-ui.js

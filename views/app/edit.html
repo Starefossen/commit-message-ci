@@ -1,0 +1,56 @@
+{% extends "app/view.html" %}
+
+{% block content %}
+<h1 class="ui header">Edit App</h1>
+
+<form class="ui form" method="post">
+  <div class="two fields">
+    <div class="field">
+      <label>Owner</label>
+      <p>{{ app.owner }}</p>
+    </div>
+    <div class="field">
+      <label>Repo</label>
+      <p>{{ app.repo }}</p>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Description</label>
+    <p>{{ app.desc }}</p>
+  </div>
+
+  <div class="field">
+    <label>Convention</label>
+    <p>Select the commit message format convention to validate against.</p>
+    <div class="ui fluid selection dropdown">
+      <input type="hidden" name="convention" value="{{ app.convention }}">
+      <i class="dropdown icon"></i>
+      <div class="default text">Select Convention</div>
+      <div class="menu">
+        <div class="item" data-value="AngularJS">AngularJS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Admins</label>
+    <p>Users that are can manage this application.</p>
+    <div class="ui fluid multiple search selection dropdown addition">
+      <input type="hidden" name="users"
+        value="{% for u in users %}{%if not loop.first%},{%endif%}{{u._id}}{% endfor %}">
+      <i class="dropdown icon"></i>
+      <div class="default text">Admins</div>
+      <div class="menu">{% for user in users %}
+        <div class="item" data-value="{{ user._id }}">{{ user.userName }}</div>
+      {% endfor %}</div>
+    </div>
+  </div>
+
+  <button class="ui button" type="submit">Submit</button>
+</form>
+{% endblock %}
+
+{% block footer %}
+<script src="/static/js/app/new.js"></script>
+{% endblock %}

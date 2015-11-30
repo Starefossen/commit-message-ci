@@ -1,0 +1,59 @@
+{
+  "name": "@starefossen/commit-message-ci",
+  "version": "1.0.0",
+  "description": "Simple CI server to validate commit message formatting",
+  "main": "index.js",
+  "scripts": {
+    "dev": "supervisor -w index.js,apps,lib -e js index.js",
+    "start": "node index.js",
+    "grunt": "grunt",
+    "lint": "eslint test/ lib/ apps/ index.js",
+    "test": "mocha -r test/support/env -R spec -b --check-leaks test/unit test/acceptance/",
+    "watch": "mocha -r test/support/env -R progress -b --check-leaks -w test/unit test/acceptance/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/starefossen/commit-message-ci.git"
+  },
+  "keywords": [
+    "git",
+    "commit",
+    "ci"
+  ],
+  "author": "Hans Kristian Flaatten <hans@starefossen.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/starefossen/commit-message-ci/issues"
+  },
+  "homepage": "https://github.com/starefossen/commit-message-ci#readme",
+  "devDependencies": {
+    "eslint": "^1.10.2",
+    "eslint-config-airbnb": "^1.0.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "mocha": "^2.3.4",
+    "supertest": "^1.1.0",
+    "supervisor": "^0.9.1"
+  },
+  "dependencies": {
+    "async": "^1.5.0",
+    "body-parser": "^1.14.1",
+    "connect-redis": "^3.0.1",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "github": "^0.2.4",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-less": "^1.1.0",
+    "ioredis": "^1.11.1",
+    "jquery": "^2.1.4",
+    "moment": "^2.10.6",
+    "mongoose": "^4.2.8",
+    "nunjucks": "^2.2.0",
+    "oauth": "^0.9.14",
+    "semantic-ui-less": "^2.1.6"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  }
+}

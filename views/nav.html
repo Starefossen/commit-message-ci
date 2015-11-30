@@ -1,0 +1,31 @@
+<div class="ui fixed inverted menu">
+  <div class="ui container">
+    <a href="/" class="header item">
+      <img class="logo" src="/static/images/logo.png">
+      <code>git commit</code>
+    </a>
+
+    <a href="/app" class="header item">My Apps</a>
+    <a href="/app/new" class="header item">New App</a>
+
+    {% if req.session.auth %}
+    <div class="ui simple dropdown item right">
+      {{ req.session.auth.fullName }} <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="header">Signed in as {{ req.session.auth.userName }}</div>
+        <div class="divider"></div>
+        <a href="/profile" class="item">Your profile</a>
+        <a href="/app" class="item">Your apps</a>
+        <div class="divider"></div>
+        <a href="/pofile/settings" class="item">Settings</a>
+        <a href="/logout" class="item">Log out</a>
+      </div>
+    </div>
+    {% else %}
+    <div class="item right">
+      <a href="/login/github" class="ui button">Log in</a>
+    </div>
+    {% endif %}
+
+  </div>
+</div>

@@ -1,0 +1,31 @@
+{% set class="login" %}
+{% extends "base.html" %}
+
+{% block title %}Login – {{ super() }}{% endblock %}
+
+{% block body %}
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui teal image header">
+      <img src="/static/images/logo.png" class="image">
+      <div class="content">
+        Welcome to <code>git commit</code> ci
+      </div>
+    </h2>
+    <form class="ui large form">
+      <div class="ui stacked segment">
+        <a href="/login/github" class="ui fluid large teal submit button">
+          <i class="github icon"></i> Login with GitHub
+        </a>
+      </div>
+
+      <div class="ui error message"></div>
+
+    </form>
+
+    <div class="ui message">
+      New to us? <a href="#">Sign Up</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
