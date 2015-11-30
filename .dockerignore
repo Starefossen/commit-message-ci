@@ -1,0 +1,13 @@
+.*.swp
+.*.swo
+.DS_Store
+.env.*
+.eslintrc
+.git
+LICENSE
+README.md
+deploy.sh
+docker-compose-*
+node_modules
+static/css
+static/js/semantic-ui.js
