@@ -1,0 +1,23 @@
+mongo:
+    image: mongo:latest
+
+redis:
+    image: redis:latest
+
+dev:
+    image: node:slim
+    working_dir: /usr/src/app
+    ports:
+        - 8080
+    links:
+        - mongo
+        - redis
+    volumes:
+        - .:/usr/src/app
+    command: npm run dev
+    env_file: .env.dev
+    environment:
+        - NODE_ENV=development
+        - VIRTUAL_HOST=ci.starefossen.privat
+        - VIRTUAL_PORT=8080
+        - MONGO_DB=test
