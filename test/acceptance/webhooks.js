@@ -54,6 +54,7 @@ describe('/webhook', function describe() {
       assert.equal(msg.state, 'success');
       assert.equal(msg.description, 'Commit message is valid');
       assert.equal(msg.context, 'git-commit/message');
+      assert.equal(typeof msg.target_url, 'string');
 
       process.nextTick(done);
     };
@@ -75,6 +76,7 @@ describe('/webhook', function describe() {
         '"<type>(<scope>): <subject>"!',
       ].join(' '));
       assert.equal(msg.context, 'git-commit/message');
+      assert.equal(typeof msg.target_url, 'string');
 
       process.nextTick(done);
     };

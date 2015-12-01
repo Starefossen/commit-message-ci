@@ -193,7 +193,12 @@ app.get('/:owner/:repo/delete', function getAppDelete(req, res, next) {
 app.post('/:owner/:repo/webhook', function getAppWebhook(req, res) {
   if (req.body && req.body.commits) {
     req.body.commits.forEach(function commitsForEach(c) {
-      req.repo.validateCommit(c, {send: true}, function validateCommitCb(err) {
+      const opts = {
+        send: true,
+        appUrl: `${req.protocol}://${req.headers.host}/app/${req.repo.name}`,
+      };
+
+      req.repo.validateCommit(c, opts, function validateCommitCb(err) {
         if (err) { throw err; }
       });
     });
@@ -250,7 +255,10 @@ app.post('/:owner/:repo/:sha', function postAppCommitStatus(req, res, next) {
     message: req.commit.commit.message,
   };
 
-  const opts = { send: true };
+  const opts = {
+    send: true,
+    appUrl: `${req.protocol}://${req.headers.host}/app/${req.repo.name}`,
+  };
 
   if (req.body.accept) { opts.valid = true; }
   if (req.body.reject) { opts.valid = false; }

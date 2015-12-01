@@ -39,6 +39,7 @@ appSchema.methods.validateCommit = function appValidateCommit(commit, opts, cb) 
     state: error ? 'failure' : 'success',
     description: error ? error.message : 'Commit message is valid',
     context: 'git-commit/message',
+    target_url: `${opts.appUrl}/${commit.id}`,
   };
 
   if (!opts.send) {
