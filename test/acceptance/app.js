@@ -108,7 +108,7 @@ describe('GET /app/:owner/:repo/:sha', function describe() {
   const urlInvalid = `${url}/28f497509b8e2f7ff75d48de83303dcc969cd6dd`;
   const urlUnknown = `${url}/28f497509b8e2f7ff75d48de83303dcc969cd6df`;
 
-  beforeEach(function() {
+  beforeEach(function beforeEach() {
     github.client().repos.getCommit = function gitHubGetCommitMock(msg, cb) {
       if (msg.sha === '28f497509b8e2f7ff75d48de83303dcc969cd6df') {
         const err = new Error(JSON.stringify({
