@@ -5,10 +5,10 @@
       <code>git commit</code>
     </a>
 
+    {% if req.session.auth %}
     <a href="/app" class="header item">My Apps</a>
     <a href="/app/new" class="header item">New App</a>
 
-    {% if req.session.auth %}
     <div class="ui simple dropdown item right">
       {{ req.session.auth.fullName }} <i class="dropdown icon"></i>
       <div class="menu">

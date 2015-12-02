@@ -4,8 +4,9 @@
 
 {% block container %}
 {% block header %}{% endblock %}
-<div class="ui grid">
+<div class="ui centered grid">
   <div class="row">
+    {% if req.session.auth %}
     <div class="four wide column">{% block left %}
       <div class="ui fluid vertical labeled icon menu">
         <a class="item" href="/app/{{ app.name }}">
@@ -25,6 +26,8 @@
         </a>
       </div>
     {% endblock %}</div>
+    {% endif %}
+
     <div class="twelve wide column">{% block content %}
       <h1 class="ui header">{{ app.name }}</h1>
 

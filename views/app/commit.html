@@ -30,6 +30,7 @@
   </div>
 </div>
 
+{% if req.session.auth %}
 <h2 class="ui header">
   <i class="plug icon"></i>
   <div class="content">Statuses</div>
@@ -72,4 +73,5 @@
     </div>
   </div>
 </div>
+{% endif %}
 {% endblock %}
