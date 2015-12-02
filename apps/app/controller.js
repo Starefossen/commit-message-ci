@@ -227,6 +227,8 @@ app.param('sha', function paramAppShaCommit(req, res, next, sha) {
     req.commit.valid = commit.validateMessage(c.commit.message) === null;
     req.commit.error = commit.validateMessage(c.commit.message) || null;
 
+    res.set('X-Commit-Message', req.commit.valid);
+
     next();
   });
 });
