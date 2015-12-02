@@ -1,0 +1,77 @@
+{% extends "app/view.html" %}
+
+{% block header %}
+<h2 class="ui center aligned icon header">
+  <i class="circular {{ "green checkmark" if c.valid else "red remove" }} icon"></i>
+  Commit Message is {{ "Valid" if c.valid else "Invalid" }}
+</h2>
+{% endblock %}
+
+{% block content %}
+<div class="ui segments">
+  <div class="ui segment">
+    <p><pre><code>{{ c.commit.message }}</code></pre></p>
+  </div>
+  <div class="ui secondary segment">
+    <div class="ui horizontal list">
+      <div class="item">
+        <i class="user icon"></i>
+        <div class="content">
+          <a href="{{ c.author.html_url }}">{{ c.commit.author.name }}</a>
+        </div>
+      </div>
+      <div class="item">
+        <i class="calendar outline icon"></i>
+        <div class="content">
+          {{ c.commit.author.date | since("YYYY-MM-DD") }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if req.session.auth %}
+<h2 class="ui header">
+  <i class="plug icon"></i>
+  <div class="content">Statuses</div>
+</h2>
+
+<div class="ui grid">
+  <div class="row">
+    <div class="column">
+      <form class="ui form" method="post">
+        <div class="ui right floated buttons">
+          <button class="ui negative button" name="reject" value="true">Reject</button>
+          <div class="or"></div>
+          <button class="ui positive button" name="accept" value="true">Accept</button>
+        </div>
+
+        <button class="ui left floated icon button" name="publish">
+          <i class="send icon"></i> Publish Status
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div class="ui relaxed divided list">{% for s in c.statuses %}
+        <div class="item">
+          {% if s.state == "success" %}
+          <i class="large green checkmark middle aligned icon"></i>
+          {% elif s.state == "failure" %}
+          <i class="large red remove middle aligned icon"></i>
+          {% else %}
+          <i class="large repeat middle aligned icon"></i>
+          {% endif %}
+          <div class="content">
+            <a class="header" href="{{ s.target_url }}">{{ s.context }}</a>
+            <div class="description">{{ s.description }}</div>
+          </div>
+        </div>
+      {% endfor %}</div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

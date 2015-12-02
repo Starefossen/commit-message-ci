@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Apps – {{ super() }}{% endblock %}
+
+{% block container %}
+<h1 class="ui header">Welcome to <code>git commit</code> ci</h1>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam
+lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec
+consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero
+egestas mattis sit amet vitae augue.</p>
+
+<p>Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut
+libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet,
+consectetur adipiscing elit. Aenean ut gravida lorem.</p>
+
+<!-- if not apps -->
+{% if apps.length == 0 %}
+<a href="/app/new" class="huge ui right labeled icon button">
+  <i class="right arrow icon"></i>
+  Get Started
+</a>
+{% endif %}
+
+{% for app in apps %}
+{% if loop.first %}<div class="ui relaxed divided list">{% endif %}
+  <div class="item">
+    <i class="large github middle aligned icon"></i>
+    <div class="content">
+      <a href="/app/{{ app.name }}" class="header">{{ app.name }}</a>
+      <div class="description">{{ app.desc }}</div>
+    </div>
+  </div>
+{% if loop.last %}</div>{% endif %}
+{% endfor %}
+{% endblock %}

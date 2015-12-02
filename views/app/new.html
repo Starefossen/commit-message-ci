@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}New – App – {{ super() }}{% endblock %}
+
+{% block container %}
+<h1 class="ui header">New App</h1>
+
+<p>This is a basic fixed menu template using fixed size containers.</p>
+
+{% if err %}
+<div class="ui negative message">
+  <i class="close icon"></i>
+  <div class="header">Error :(</div>
+  <p>{{ err.message }}</p>
+</div>
+{% endif %}
+
+<form class="ui form" method="post">
+  <div class="field">
+    <label>Repository</label>
+    <div class="ui fluid search selection dropdown">
+      <input type="hidden" name="repo" value="{{ app.repo }}">
+      <i class="dropdown icon"></i>
+      <div class="default text">Select Repository</div>
+      <div class="menu">{% for repo in repos %}
+        <div class="item" data-value="{{ repo }}">
+          <i class="github icon"></i>{{ repo }}
+        </div>
+      {% endfor %}</div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Convention</label>
+    <p>Select the commit message format convention to validate against.</p>
+    <div class="ui fluid search selection dropdown">
+      <input type="hidden" name="convention" value="{{ app.convention }}">
+      <i class="dropdown icon"></i>
+      <div class="default text">Select Convention</div>
+      <div class="menu">
+        <div class="item" data-value="AngularJS">AngularJS</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="ui right floated right labeled icon button" type="submit">
+    <i class="right arrow icon"></i> Next
+  </button>
+</form>
+{% endblock %}
+
+{% block footer %}
+<script src="/static/js/app/new.js"></script>
+{% endblock %}
