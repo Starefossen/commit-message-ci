@@ -217,19 +217,19 @@ app.param('sha', function paramAppShaCommit(req, res, next, sha) {
   req.repo.github().repos.getCommit(opts, function gitHubReposGetCommitCb(err, c) {
     if (err) {
       if (err.code === 404) {
-        return res.redirect(404, `/app/${req.repo.name}`);
+        res.redirect(404, `/app/${req.repo.name}`);
       } else {
-        return next(err);
+        next(err);
       }
+    } else {
+      req.commit = c;
+      req.commit.valid = commit.validateMessage(c.commit.message) === null;
+      req.commit.error = commit.validateMessage(c.commit.message) || null;
+
+      res.set('X-Commit-Message', req.commit.valid);
+
+      next();
     }
-
-    req.commit = c;
-    req.commit.valid = commit.validateMessage(c.commit.message) === null;
-    req.commit.error = commit.validateMessage(c.commit.message) || null;
-
-    res.set('X-Commit-Message', req.commit.valid);
-
-    next();
   });
 });
 
