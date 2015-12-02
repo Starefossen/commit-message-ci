@@ -81,7 +81,7 @@ describe('GET /app/:owner/:repo', function describe() {
   it('redirects to my apps for unautorized user');
 
   it('returns application', function it(done) {
-    github.client().repos.getCommits = function gitHubGetCommitsSpy(msg, cb) {
+    github.client().repos.getCommits = function gitHubGetCommitsMock(msg, cb) {
       cb(null, [{
         sha: '28f497509b8e2f7ff75d48de83303dcc969cd6de',
         commit: {
