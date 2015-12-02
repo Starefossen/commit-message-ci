@@ -23,3 +23,13 @@ build:
   after-steps:
     - turistforeningen/slack-notifier:
         url: $SLACK_WEBHOOK_URL
+
+deploy:
+    steps:
+        - script:
+            name: docker hub build
+            code: |
+                curl --verbose \
+                    -H "Content-Type: application/json" \
+                    -d "{\"docker_tag\": \"$DOCKER_TRIGGER_TAG\"}" \
+                    -X POST $DOCKER_TRIGGER_URL
