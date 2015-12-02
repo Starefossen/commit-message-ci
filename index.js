@@ -36,6 +36,7 @@ app.get('/', function getIndex(req, res) {
 // Error Handler
 app.use(function errorHandler(err, req, res, next) {
   console.error(err);
+  console.error(err.stack);
 
   res.status(err.status || 500);
   res.send(err.stack);
