@@ -1,0 +1,35 @@
+box: node:slim
+
+services:
+  - redis
+  - mongo
+
+build:
+  steps:
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+
+    - npm-install
+
+    - script:
+        name: lint
+        code: npm run lint
+
+    - npm-test
+
+  after-steps:
+    - turistforeningen/slack-notifier:
+        url: $SLACK_WEBHOOK_URL
+
+deploy:
+    steps:
+        - script:
+            name: docker hub build
+            code: |
+                curl --verbose \
+                    -H "Content-Type: application/json" \
+                    -d "{\"docker_tag\": \"$DOCKER_TRIGGER_TAG\"}" \
+                    -X POST $DOCKER_TRIGGER_URL
