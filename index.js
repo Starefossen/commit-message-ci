@@ -38,7 +38,7 @@ app.use(function errorHandler(err, req, res, next) {
   console.error(err);
   console.error(err.stack);
 
-  res.status(err.status || 500);
+  res.status(err.code || 500);
   res.send(err.stack);
 });
 
