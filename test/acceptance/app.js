@@ -69,7 +69,7 @@ describe('ALL /app/new', function describe() {
   });
 });
 
-describe.skip('GET /app/:owner/:repo', function describe() {
+describe('GET /app/:owner/:repo', function describe() {
   const url = `/app/${owner}/${repo}`;
 
   it('redirects to login for unauthenticated user');
