@@ -215,7 +215,13 @@ app.param('sha', function paramAppShaCommit(req, res, next, sha) {
   };
 
   req.repo.github().repos.getCommit(opts, function gitHubReposGetCommitCb(err, c) {
-    if (err) { return next(err); }
+    if (err) {
+      if (err.code === 404) {
+        return res.redirect(404, `/app/${req.repo.name}`);
+      } else {
+        return next(err);
+      }
+    }
 
     req.commit = c;
     req.commit.valid = commit.validateMessage(c.commit.message) === null;
