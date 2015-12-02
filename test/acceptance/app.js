@@ -72,7 +72,12 @@ describe('ALL /app/new', function describe() {
 describe('GET /app/:owner/:repo', function describe() {
   const url = `/app/${owner}/${repo}`;
 
-  it('redirects to login for unauthenticated user');
+  it('redirects to login for unauthenticated user', function it(done) {
+    req.get(url)
+     .expect(302)
+     .expect('Location', '/login', done);
+  });
+
   it('redirects to my apps for unautorized user');
 
   it('returns application', function it(done) {
