@@ -8,8 +8,13 @@ const pages = new Set([
 ]);
 
 app.param('page', function paramPage(req, res, next, page) {
-  console.log(page);
-  next();
+  if (!pages.has(page)) {
+    const err = new Error('Page Not Found');
+    err.code = 404;
+    return next(err);
+  }
+
+  return next();
 });
 
 app.get('/:page', function getPage(req, res) {
