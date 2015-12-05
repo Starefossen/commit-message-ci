@@ -1,0 +1,110 @@
+{% set class="about" %}
+{% extends "base.html" %}
+
+{% block title %}About – {{ super() }}{% endblock %}
+
+{% block container %}
+<div class="pusher">
+  <div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="eight wide column">
+          <h3 class="ui header">Consistent Commit Messages</h3>
+
+          <p>The Git Commit Message CI ensures consistency accross all your
+          projects to a specific commit message format.</p>
+
+          <h3 class="ui header">Instant GitHub Status Feedback</h3>
+
+          <p>Enjoy instant status to all your GitHub Pull Requests, with
+          helpfull feedback to all your collaborators.</p>
+
+        </div>
+        <div class="six wide right floated column">
+          <img src="/static/images/about/valid.png" class="ui large image">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui vertical stripe quote segment">
+    <div class="ui equal width stackable internally celled grid">
+      <div class="center aligned row">
+        <div class="column">
+          <h3>"It Gets the Job Done"</h3>
+          <p>
+            <img src="https://avatars1.githubusercontent.com/u/1188810?s=50" class="ui avatar image">
+            The Norwegian Trekking Association
+          <p>
+        </div>
+        <div class="column">
+          <h3>"WOW! Zero Configuration!"</h3>
+          <p>
+            <img src="https://avatars1.githubusercontent.com/u/968267?s=50" class="ui avatar image">
+            <b>Hans</b> Make of Things
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui vertical stripe segment">
+    <div class="ui middle aligned equal width stackable grid">
+      <div class="row">
+        <div class="center aligned column">
+          <i class="massive grey github icon"></i>
+        </div>
+        <div class="left aligned column">
+          <p>Just log in with your existing GitHub account, no signup required,
+          and choose your public or private repositories.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="right aligned column">
+          <p>Zero configuration required. Just log in, choose the repository you
+          want to verify, and you are good to go.</p>
+        </div>
+        <div class="center aligned column">
+          <i class="massive grey wizard icon"></i>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="center aligned column">
+          <i class="massive grey checkmark icon"></i>
+        </div>
+        <div class="left aligned column">
+          <p>Sit back and watch while your pull requests gets validated and your
+          collaborators gets instant feedback on their commits.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--<div class="ui vertical stripe segment">
+    <div class="ui text container">
+      <h3 class="ui header">Breaking The Grid, Grabs Your Attention</h3>
+
+      <p>Instead of focusing on content creation and hard work, we have learned
+      how to master the art of doing nothing by providing massive amounts of
+      whitespace and generic content that can seem massive, monolithic and worth
+      your attention.</p>
+
+      <a class="ui large button">Read More</a>
+
+      <h4 class="ui horizontal header divider">
+        <a href="#">Case Studies</a>
+      </h4>
+
+      <h3 class="ui header">Did We Tell You About Our Bananas?</h3>
+
+      <p>Yes I know you probably disregarded the earlier boasts as non-sequitor
+      filler content, but its really true. It took years of gene splicing and
+      combinatory DNA research, but our bananas can really dance.</p>
+
+      <a class="ui large button">I'm Still Quite Interested</a>
+    </div>
+  </div>-->
+</div>
+{% endblock %}
