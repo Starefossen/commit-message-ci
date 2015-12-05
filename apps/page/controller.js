@@ -3,15 +3,15 @@
 const router = require('express').Router;
 const app = router();
 
+const HttpError = require('@starefossen/node-http-error');
+
 const pages = new Set([
   'about',
 ]);
 
 app.param('page', function paramPage(req, res, next, page) {
   if (!pages.has(page)) {
-    const err = new Error('Page Not Found');
-    err.code = 404;
-    return next(err);
+    return next(new HttpError(`Page "${page}" does not exist`, 404));
   }
 
   return next();
