@@ -36,11 +36,15 @@ app.get('/', function getIndex(req, res) {
 
 // Error Handler
 app.use(function errorHandler(err, req, res, next) {
-  console.error(err);
-  console.error(err.stack);
+  err.code = err.code || 500;
+
+  if (err.code >= 500) {
+    console.error(err);
+    console.error(err.stack);
+  }
 
   res.status(err.code || 500);
-  res.send(err.stack);
+  res.send(err.message);
 });
 
 if (!module.parent) {
