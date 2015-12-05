@@ -27,7 +27,7 @@ app.use(require('./apps/auth/session'));
 app.use(require('./apps/auth/middleware'));
 app.use('/', require('./apps/auth/controller'));
 app.use('/app', require('./apps/app/controller'));
-app.use('/', require('./apps/page/controller'));
+app.use('/page', require('./apps/page/controller'));
 
 // Redirect to /app
 app.get('/', function getIndex(req, res) {
