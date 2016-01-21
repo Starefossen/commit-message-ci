@@ -4,8 +4,6 @@ const github = require('../../lib/github');
 // const User = require('./model').User;
 
 module.exports = function authMiddleware(req, res, next) {
-  console.log(req.originalUrl);
-
   if (!req.session) {
     req.session = {};
   }
