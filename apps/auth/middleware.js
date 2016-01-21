@@ -4,7 +4,7 @@ const github = require('../../lib/github');
 // const User = require('./model').User;
 
 module.exports = function authMiddleware(req, res, next) {
-  if (!req.session.auth
+  if (!req.session || !req.session.auth
       && !/^\/login/.test(req.originalUrl)
       && !/^\/page\//.test(req.originalUrl)
       && !/^\/app(\/[^\/]+){2}\/(webhook|[0-9a-f]{40})\/?$/.test(req.originalUrl)
