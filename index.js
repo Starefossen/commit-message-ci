@@ -23,6 +23,11 @@ module.exports.nunjucks = nunjucks.configure('views', {
   noCache: process.env.NODE_ENV !== 'production',
 });
 
+app.get('/favicon.ico', function getFavicon(req, res) {
+  res.set('Content-Type', 'image/x-icon');
+  res.end();
+});
+
 app.use(require('./apps/auth/session'));
 app.use(require('./apps/auth/middleware'));
 app.use('/', require('./apps/auth/controller'));
