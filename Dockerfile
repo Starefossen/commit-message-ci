@@ -8,3 +8,5 @@ RUN npm install --only prod
 
 ADD . /usr/src/app
 RUN npm run grunt
+
+CMD [ "node", "index.js" ]
