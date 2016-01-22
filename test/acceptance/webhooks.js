@@ -13,18 +13,18 @@ describe('/webhook', function describe() {
   const clientOrg = github.client;
   const url = `/app/${owner}/${repo}/webhook`;
 
-  const commit = {commits: [{
+  const commit = { commits: [{
     id: '5e16ac67000c9672cb932cc06c9ae170496d5997',
     message: 'perf(pencil): remove graphiteWidth option',
-  }]};
+  }] };
 
-  const commits = {commits: [{
+  const commits = { commits: [{
     id: '5e16ac67000c9672cb932cc06c9ae170496d5997',
     message: 'perf(pencil): remove graphiteWidth option',
   }, {
     id: '02d4aca0fd88aa3341d5f0fa36f79366d2d12e4e',
     message: 'fix(graphite): stop graphite breaking when width < 0.1',
-  }]};
+  }] };
 
   let client;
 

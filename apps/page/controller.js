@@ -18,9 +18,7 @@ app.param('page', function paramPage(req, res, next, page) {
 });
 
 app.get('/:page', function getPage(req, res) {
-  res.render(`page/${req.params.page}.html`, {
-    req: req,
-  });
+  res.render(`page/${req.params.page}.html`, { req });
 });
 
 module.exports = app;

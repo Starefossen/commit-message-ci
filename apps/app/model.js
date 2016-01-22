@@ -8,13 +8,13 @@ const validateCommit = require('../../lib/commit').validateMessage;
 
 const appSchema = new Schema({
   name: String,
-  updated: {type: Date, default: Date.now},
+  updated: { type: Date, default: Date.now },
   desc: String,
   repo: String,
   owner: String,
-  convention: {type: String, enum: ['AngularJS'], required: '{PATH} is required'},
-  users: [{type: Schema.Types.ObjectId, ref: 'User'}],
-  apiUser: {type: Schema.Types.ObjectId, ref: 'User'},
+  convention: { type: String, enum: ['AngularJS'], required: '{PATH} is required' },
+  users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  apiUser: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
 appSchema.methods.github = function appGithubClient() {

@@ -25,13 +25,10 @@ app.get('/', function getApps(req, res, next) {
     users: req.session.auth._id,
   };
 
-  App.find(query).sort({updated: -1}).exec(function appFindCb(err, apps) {
+  App.find(query).sort({ updated: -1 }).exec(function appFindCb(err, apps) {
     if (err) { return next(err); }
 
-    res.render('app/index.html', {
-      req: req,
-      apps: apps,
-    });
+    res.render('app/index.html', { req, apps });
   });
 });
 
@@ -43,8 +40,8 @@ app.all('/new', function allNew(req, res, next) {
       res.render('app/new.html', {
         app: data || {},
         err: appErr || null,
-        repos: repos,
-        req: req,
+        repos,
+        req,
       });
     });
   }
@@ -126,9 +123,9 @@ app.get('/:owner/:repo', function getApp(req, res, next) {
     }
 
     res.render('app/view.html', {
-      commits: commits,
+      commits,
       app: req.repo,
-      req: req,
+      req,
     });
   });
 });
@@ -139,7 +136,7 @@ app.all('/:owner/:repo/edit', function getAppEdit(req, res) {
       app: req.repo,
       users: users || req.repo.users,
       err: err || null,
-      req: req,
+      req,
     });
   }
 
@@ -149,7 +146,7 @@ app.all('/:owner/:repo/edit', function getAppEdit(req, res) {
         if (req.repo.users[i]._id.toString() === user) { return cb(null, req.repo.users[i]); }
       }
 
-      req.github.user.getFrom({user: user}, function gitHubUserGetCb(githubErr, data) {
+      req.github.user.getFrom({ user }, function gitHubUserGetCb(githubErr, data) {
         if (githubErr) { return cb(new Error(`User ${user} does not exist`)); }
 
         const newUser = {
@@ -184,7 +181,7 @@ app.get('/:owner/:repo/delete', function getAppDelete(req, res, next) {
   // @TODO(starefossen): impelement delete confirmation via POST
   // @TODO(starefossen): remove web-hook
 
-  App.remove({_id: req.repo._id}, function appRemoveCb(err) {
+  App.remove({ _id: req.repo._id }, function appRemoveCb(err) {
     if (err) { return next(err); }
     res.redirect('/app');
   });
@@ -211,7 +208,7 @@ app.param('sha', function paramAppShaCommit(req, res, next, sha) {
   const opts = {
     user: req.repo.owner,
     repo: req.repo.repo,
-    sha: sha,
+    sha,
   };
 
   req.repo.github().repos.getCommit(opts, function gitHubReposGetCommitCb(err, c) {
@@ -253,7 +250,7 @@ app.get('/:owner/:repo/:sha', function getAppCommit(req, res) {
   res.render('app/commit.html', {
     c: req.commit,
     app: req.repo,
-    req: req,
+    req,
   });
 });
 

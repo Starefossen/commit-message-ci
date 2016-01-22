@@ -9,5 +9,5 @@ module.exports = session({
   saveUninitialized: false,
   secret: process.env.APP_SECRET,
   // secure: process.env.NODE_ENV === 'production',
-  store: new RedisStore({client: redis}),
+  store: new RedisStore({ client: redis }),
 });

@@ -18,9 +18,7 @@ const oauth2 = new OAuth2(
 ); /** Custom headers */
 
 app.get('/login', function getLogin(req, res) {
-  res.render('login.html', {
-    req: req,
-  });
+  res.render('login.html', { req });
 });
 
 app.get('/logout', function getLogout(req, res) {
@@ -55,15 +53,12 @@ app.get('/login/github/callback', function getLoginGitHubCallback(req, res, next
 
   oauth2.getOAuthAccessToken(
     req.query.code,
-    {redirect_uri: originalUrl},
+    { redirect_uri: originalUrl },
     function getOAuthAccessTokenCb(err, accessToken, refreshToken, results) {
       if (err) { return next(err); }
       if (results.error) { return next(results.error); }
 
-      const userData = {
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-      };
+      const userData = { accessToken, refreshToken };
 
       github.client(userData).user.get({}, function githubUserGetCb(githubErr, data) {
         if (githubErr) { return next(githubErr); }
