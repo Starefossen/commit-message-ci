@@ -9,7 +9,7 @@ redis:
         - REDIS_PASS="**None**"
 
 dev:
-    image: node:slim
+    image: node:argon
     working_dir: /usr/src/app
     ports:
         - 8080
