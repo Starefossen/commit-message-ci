@@ -1,5 +1,7 @@
 mongo:
-    image: mongo:latest
+    image: tutum/mongodb:latest
+    environment:
+        - AUTH=no
 
 redis:
     image: redis:latest
