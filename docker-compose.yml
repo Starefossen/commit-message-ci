@@ -4,7 +4,9 @@ mongo:
         - AUTH=no
 
 redis:
-    image: redis:latest
+    image: tutum/redis:latest
+    environment:
+        - REDIS_PASS="**None**"
 
 dev:
     image: node:slim
