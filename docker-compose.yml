@@ -6,7 +6,7 @@ mongo:
 redis:
     image: tutum/redis:latest
     environment:
-        - REDIS_PASS="**None**"
+        - REDIS_PASS=**None**
 
 dev:
     image: node:argon
