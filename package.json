@@ -49,7 +49,7 @@
     "ioredis": "^1.14.0",
     "jquery": "^2.2.0",
     "moment": "^2.11.1",
-    "mongoose": "^4.3.6",
+    "mongoose": "~4.3.7",
     "nunjucks": "^2.3.0",
     "oauth": "^0.9.14",
     "semantic-ui-less": "^2.1.8"
