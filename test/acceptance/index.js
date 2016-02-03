@@ -26,6 +26,14 @@ before(function setupDBConn(done) {
   }
 });
 
+before(function setupRedisConn(done) {
+  if (redis.status === 'connect') {
+    return done();
+  }
+
+  redis.on('ready', done);
+});
+
 beforeEach(function dropDatabase(done) {
   mongo.connection.db.dropDatabase(done);
 });
