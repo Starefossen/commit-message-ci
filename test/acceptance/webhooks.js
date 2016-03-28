@@ -46,7 +46,7 @@ describe('/webhook', function describe() {
     github.client = clientOrg;
   });
 
-  it('reports failure for single valid commit', function it(done) {
+  it('reports success for single valid commit', function it(done) {
     client.statuses.create = function githubCreateStatusSpy(msg) {
       assert.equal(msg.user, owner);
       assert.equal(msg.repo, repo);
@@ -70,11 +70,7 @@ describe('/webhook', function describe() {
       assert.equal(msg.repo, repo);
       assert.equal(msg.sha, '5e16ac67000c9672cb932cc06c9ae170496d5997');
       assert.equal(msg.state, 'failure');
-      assert.equal(msg.description, [
-        '"SOAP is a piece of shit"',
-        'does not match',
-        '"<type>(<scope>): <subject>"!',
-      ].join(' '));
+      assert.equal(msg.description, 'Commit message does not match "<type>(<scope>): <subject>"!');
       assert.equal(msg.context, 'git-commit/message');
       assert.equal(typeof msg.target_url, 'string');
 
